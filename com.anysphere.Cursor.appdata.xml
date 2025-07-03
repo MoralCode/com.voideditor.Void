@@ -1,0 +1,26 @@
+<!-- com.anysphere.cursor.appdata.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.cursor.App</id>
+  
+  <name>Cursor</name>
+  <summary>The AI-first Code Editor</summary>
+  
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  
+  <description>
+    <p>
+      Cursor is an AI-first code editor designed for building software. It's built from the ground up to help you code, debug, and refactor with the help of AI.
+    </p>
+  </description>
+  
+  <launchable type="desktop-id">com.cursor.App.desktop</launchable>
+  
+  <releases>
+    <release version="{{VERSION}}" date-iso="2025-07-03"/>
+  </releases>
+
+  <content_rating type="oars-1.1" />
+
+</component>

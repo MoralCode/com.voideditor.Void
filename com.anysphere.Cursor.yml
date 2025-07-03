@@ -1,0 +1,54 @@
+app-id: com.anysphere.Cursor
+runtime: org.freedesktop.Platform
+runtime-version: "24.08"
+sdk: org.freedesktop.Sdk
+command: zypak-run.sh
+base: org.electronjs.Electron2.BaseApp
+base-version: "24.08"
+finish-args:
+  # Basic X11 and Wayland access
+  - --socket=x11
+  - --socket=wayland
+  # GPU acceleration
+  - --device=dri
+  # Audio
+  - --socket=pulseaudio
+  # Network access - Cursor needs this for its AI features
+  - --share=network
+  # Allow talking to the D-Bus session bus
+  - --socket=session-bus
+  # Deny access to the home directory for security
+  - --nofilesystem=home
+  # Grant access to a specific projects folder
+  - --filesystem=~/cursor-workspace:create
+
+modules:
+  # Module for the Cursor application itself
+  - shared-modules/libcanberra/libcanberra.json
+  - name: cursor
+    buildsystem: simple
+    build-commands:
+      # Copy the extracted AppImage contents into the /app directory
+      - cp -r usr /app/usr
+      # Create a wrapper script that launches Cursor via zypak
+      - |
+        cat <<EOF > /app/bin/zypak-run.sh
+        #!/bin/sh
+        export ZYPAK_APP_IMAGE_PATH=/app
+        export ZYPAK_APP_PATH=/app/
+        exec /app/bin/zypak-wrapper /app/usr/share/cursor/cursor "$@"
+        EOF
+      - chmod +x /app/bin/zypak-run.sh
+      # Install metadata files
+      - install -Dm644 com.anysphere.Cursor.desktop /app/share/applications/com.anysphere.Cursor.desktop
+      - install -Dm644 com.anysphere.Cursor.appdata.xml /app/share/metainfo/com.anysphere.cursor.appdata.xml
+      - install -Dm644 co.anysphere.cursor.png /app/share/icons/hicolor/256x256/apps/com.anysphere.Cursor.png
+    sources:
+      # The Makefile will create this directory before the build starts
+      - type: dir
+        path: squashfs-root
+      # These are the metadata files from our project directory
+      - type: file
+        path: com.anysphere.Cursor.desktop
+      - type: file
+        path: com.anysphere.Cursor.appdata.xml

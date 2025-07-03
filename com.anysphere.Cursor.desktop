@@ -1,0 +1,9 @@
+# com.anysphere.Cursor
+[Desktop Entry]
+Name=Cursor
+Exec=zypak-run.sh
+Icon=com.anysphere.Cursor
+Type=Application
+Categories=Development;IDE;
+StartupNotify=true
+StartupWMClass=cursor

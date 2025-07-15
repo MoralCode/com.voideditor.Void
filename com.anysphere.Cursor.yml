@@ -51,8 +51,12 @@ modules:
     sources:
       - type: file
         dest-filename: Cursor.AppImage
-        url: https://downloads.cursor.com/production/faa03b17cce93e8a80b7d62d57f5eda6bb6ab9fa/linux/x64/Cursor-1.2.2-x86_64.AppImage
+        url: https://www.cursor.com/download/stable/linux-x64
         sha256: 990af540cc38c0ffa41ef13d4563e408ab4739b6ebd23a723b1370dcb7d33df7
+        x-checker-data:
+          type: rotating-url
+          url: https://www.cursor.com/download/stable/linux-x64
+          dest-filename: Cursor.AppImage
       # These are the metadata files from our project directory
       - type: file
         path: com.anysphere.Cursor.desktop

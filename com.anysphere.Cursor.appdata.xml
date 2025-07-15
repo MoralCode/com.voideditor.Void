@@ -18,7 +18,7 @@
   <launchable type="desktop-id">com.cursor.App.desktop</launchable>
   
   <releases>
-    <release version="{{VERSION}}" date-iso="2025-07-03"/>
+    <release version="1.2.2" date-iso="2025-07-03"/>
   </releases>
 
   <content_rating type="oars-1.1" />

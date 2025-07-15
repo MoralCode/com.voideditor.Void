@@ -9,14 +9,6 @@ BUILD_DIR := build-dir
 SQUASHFS_ROOT := squashfs-root
 ARCH ?= x86_64
 
-# The user MUST provide these variables when running make
-# Example: make build VERSION=0.25.4 CURSOR_URL=https://.../Cursor-0.25.4.AppImage
-ifndef CURSOR_URL
-    $(error CURSOR_URL is not set. Please provide the download URL for the AppImage.)
-endif
-ifndef VERSION
-    $(error VERSION is not set. Please provide the version number.)
-endif
 
 APPIMAGE_FILE = $(notdir $(CURSOR_URL))
 
@@ -27,13 +19,9 @@ APPIMAGE_FILE = $(notdir $(CURSOR_URL))
 all: build
 
 # Builds the Flatpak. Depends on the AppImage being extracted.
-build: $(SQUASHFS_ROOT)
 	@echo "--> Building the Flatpak..."
 	# Update the version in the appdata file before building
-	sed -i 's/{{VERSION}}/$(VERSION)/g' $(APPDATA)
 	flatpak-builder $(BUILD_DIR) $(MANIFEST) --force-clean
-	# Revert the version change so the template remains clean
-	sed -i 's/$(VERSION)/{{VERSION}}/g' $(APPDATA)
 	@echo "--> Build complete."
 
 # Installs the Flatpak for the current user.

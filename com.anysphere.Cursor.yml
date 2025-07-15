@@ -6,23 +6,30 @@ command: zypak-run.sh
 base: org.electronjs.Electron2.BaseApp
 base-version: "24.08"
 finish-args:
-  # Basic X11 and Wayland access
-  - --socket=x11
+  - --share=ipc
   - --socket=wayland
+  - --socket=fallback-x11
   # GPU acceleration
   - --device=dri
   # Audio
   - --socket=pulseaudio
+  - --socket=ssh-auth
   # Network access - Cursor needs this for its AI features
   - --share=network
-  # Allow talking to the D-Bus session bus
-  - --socket=session-bus
-  - --socket=system-bus
+  - --device=all
+  - --filesystem=host
+  - --persist=.vscode-oss
+  - --allow=devel
+  - --talk-name=org.freedesktop.secrets
+  - --talk-name=org.kde.kwalletd5
+  - --talk-name=org.freedesktop.Flatpak
+  - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
+  - --filesystem=xdg-run/gnupg:ro
+  - --filesystem=xdg-config/kdeglobals:ro
+  - --talk-name=com.canonical.AppMenu.Registrar
+  - --system-talk-name=org.freedesktop.login1
+  # Unsure
   - --talk-name=org.freedesktop.Notifications
-  # Deny access to the home directory for security
-  - --nofilesystem=home
-  # Grant access to a specific projects folder
-  - --filesystem=~/cursor-workspace:create
 
 modules:
   # Module for the Cursor application itself

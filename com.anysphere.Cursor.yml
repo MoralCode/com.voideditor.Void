@@ -16,8 +16,6 @@ finish-args:
   - --socket=ssh-auth
   # Network access - Cursor needs this for its AI features
   - --share=network
-  - --device=all
-  - --filesystem=host
   - --persist=.vscode-oss
   - --allow=devel
   - --talk-name=org.freedesktop.secrets

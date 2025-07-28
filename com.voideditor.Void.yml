@@ -2,7 +2,7 @@ app-id: com.voideditor.Void
 runtime: org.freedesktop.Sdk
 runtime-version: "24.08"
 sdk: org.freedesktop.Sdk
-command: zypak-run.sh
+command: com.voideditor.Void
 base: org.electronjs.Electron2.BaseApp
 base-version: "24.08"
 finish-args:
@@ -37,10 +37,15 @@ modules:
     build-commands:
       - mkdir -p /app/void
       # Copy the extracted tarball contents into the /app directory
-      - cp -r void-linux-x64/bin /app/bin
+      - cp -r void-linux-x64/bin /app/void/bin
+      # - chmod +x /app/bin/void
       - cp -r void-linux-x64/locales /app/void/locales
-      - cp -r void-linux-x64/resources /app/void/resources
+      - cp -r void-linux-x64/resources /app/share/void/
       - cp -r void-linux-x64/* /app/void/
+      - mkdir -p /app/share/void/
+      - cp -r void-linux-x64/resources /app/share/void/resources
+
+      - ln -s /app/void/void /app/share/void/com.voideditor.Void
 
 
       # Install metadata files
@@ -48,7 +53,6 @@ modules:
       - install -Dm644 com.voideditor.Void.appdata.xml /app/share/metainfo/com.voideditor.Void.appdata.xml
       - mkdir -p /app/share/icons/hicolor/256x256/apps
       - ffmpeg -width 256 -i void-linux-x64/resources/app/resources/linux/code.png -vf scale=256:-1 -frames:v 1 /app/share/icons/hicolor/256x256/apps/com.voideditor.Void.png
-      - install -Dm755 run.sh /app/bin/zypak-run.sh
     sources:
       - type: archive
         dest-filename: void-linux-x64.tar.gz
@@ -66,3 +70,32 @@ modules:
         path: com.voideditor.Void.appdata.xml
       - type: file
         path: run.sh
+
+  - name: wrapper-flatpak-wrapper
+    buildsystem: meson
+    config-opts:
+      - -Deditor_binary=/app/share/void/com.voideditor.Void
+      - >-
+        -Deditor_args=[
+        '/app/share/void/resources/app/out/cli.js',
+        '--extensions-dir', '$XDG_DATA_HOME/void/extensions'
+        ]
+      - -Dprogram_name=com.voideditor.Void
+      - -Deditor_title=Void
+      - -Dzypak=enabled
+      - -Dzypak_args=[ 'host', '-' ]
+      - >-
+        -Denvs=[
+        "ELECTRON_RUN_AS_NODE=1"
+        ]
+      - >-
+        -Denvs_inner=[
+        "ZYPAK_SPAWN_LATEST_ON_REEXEC=0",
+        ]
+      - -Dfirst_run_template=README.md
+      # - -Dsdk_update_template=sdk_update.md
+      - -Dflagfile_prefix=flatpak-void
+    sources:
+      - type: git
+        url: https://github.com/flathub-infra/ide-flatpak-wrapper.git
+        commit: c26e15940a02b40603ea57b0ac76b4944bee5464

@@ -35,6 +35,7 @@ modules:
   - name: void
     buildsystem: simple
     build-commands:
+      - mkdir -p /app/void
       # Copy the extracted tarball contents into the /app directory
       - cp -r void-linux-x64/bin /app/bin
       - cp -r void-linux-x64/locales /app/void/locales
@@ -53,6 +54,7 @@ modules:
         dest-filename: void-linux-x64.tar.gz
         url: https://github.com/voideditor/binaries/releases/download/1.99.30044/Void-linux-x64-1.99.30044.tar.gz
         sha256: 7beb974b52716be77397e420e0c103625ed7145365393ecef7aa160766c06a04
+        dest: void-linux-x64
         # x-checker-data:
         #   type: rotating-url
         #   url: https://www.cursor.com/download/stable/linux-x64

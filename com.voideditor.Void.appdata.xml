@@ -1,4 +1,3 @@
-<!-- com.anysphere.cursor.appdata.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>com.voideditor.Void</id>
@@ -18,7 +17,7 @@
   <launchable type="desktop-id">com.voideditor.Void.desktop</launchable>
   
   <releases>
-    <release version="1.2.2" date-iso="2025-07-03"/>
+    <release version="1.99.30044" date="2025-06-23"> </release>
   </releases>
 
   <content_rating type="oars-1.1" />

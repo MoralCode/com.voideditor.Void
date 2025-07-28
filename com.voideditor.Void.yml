@@ -31,7 +31,7 @@ finish-args:
 
 modules:
   # Module for the Cursor application itself
-  - shared-modules/libcanberra/libcanberra.json
+  # - shared-modules/libcanberra/libcanberra.json
   - name: void
     buildsystem: simple
     build-commands:

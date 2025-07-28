@@ -1,4 +1,4 @@
-app-id: com.anysphere.Cursor
+app-id: com.voideditor.Void
 runtime: org.freedesktop.Sdk
 runtime-version: "24.08"
 sdk: org.freedesktop.Sdk
@@ -40,10 +40,10 @@ modules:
       # Copy the extracted AppImage contents into the /app directory
       - cp -r squashfs-root/usr /app/usr
       # Install metadata files
-      - install -Dm644 com.anysphere.Cursor.desktop /app/share/applications/com.anysphere.Cursor.desktop
-      - install -Dm644 com.anysphere.Cursor.appdata.xml /app/share/metainfo/com.anysphere.cursor.appdata.xml
+      - install -Dm644 com.voideditor.Void.desktop /app/share/applications/com.voideditor.Void.desktop
+      - install -Dm644 com.voideditor.Void.appdata.xml /app/share/metainfo/com.voideditor.Void.appdata.xml
       - mkdir -p /app/share/icons/hicolor/256x256/apps
-      - ffmpeg -width 256 -i squashfs-root/usr/share/pixmaps/co.anysphere.cursor.png -vf scale=256:-1 -frames:v 1 /app/share/icons/hicolor/256x256/apps/com.anysphere.Cursor.png
+      - ffmpeg -width 256 -i squashfs-root/usr/share/pixmaps/co.anysphere.cursor.png -vf scale=256:-1 -frames:v 1 /app/share/icons/hicolor/256x256/apps/com.voideditor.Void.png
       - install -Dm755 run.sh /app/bin/zypak-run.sh
       - rm -rf squashfs-root
     sources:
@@ -57,8 +57,8 @@ modules:
         #   dest-filename: Cursor.AppImage
       # These are the metadata files from our project directory
       - type: file
-        path: com.anysphere.Cursor.desktop
+        path: com.voideditor.Void.desktop
       - type: file
-        path: com.anysphere.Cursor.appdata.xml
+        path: com.voideditor.Void.appdata.xml
       - type: file
         path: run.sh

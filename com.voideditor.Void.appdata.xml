@@ -1,0 +1,26 @@
+<!-- com.anysphere.cursor.appdata.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.voideditor.Void</id>
+  
+  <name>Void</name>
+  <summary>The open source AI code editor</summary>
+  
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Apache-2.0</project_license>
+  
+  <description>
+    <p>
+      Void is an open source Cursor alternative. Write code with the best AI tools, use any model, and retain full control over your data.
+    </p>
+  </description>
+  
+  <launchable type="desktop-id">com.voideditor.Void.desktop</launchable>
+  
+  <releases>
+    <release version="1.2.2" date-iso="2025-07-03"/>
+  </releases>
+
+  <content_rating type="oars-1.1" />
+
+</component>

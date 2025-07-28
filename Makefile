@@ -1,7 +1,7 @@
 # Makefile for building the Cursor Flatpak
 
 # --- Variables ---
-APP_ID := com.anysphere.Cursor
+APP_ID := com.voideditor.Void
 MANIFEST := $(APP_ID).yml
 APPDATA := $(APP_ID).appdata.xml
 DESKTOP := $(APP_ID).desktop

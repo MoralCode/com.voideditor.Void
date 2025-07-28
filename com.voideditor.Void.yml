@@ -32,7 +32,7 @@ finish-args:
 modules:
   # Module for the Cursor application itself
   - shared-modules/libcanberra/libcanberra.json
-  - name: cursor
+  - name: void
     buildsystem: simple
     build-commands:
       - chmod +x ./Cursor.AppImage

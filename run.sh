@@ -29,4 +29,4 @@ for i in "${SDK[@]}"; do
   fi
 done
 
-exec /app/bin/zypak-wrapper /app/usr/share/cursor/cursor "$@"
+exec /app/bin/zypak-wrapper /app/bin/void "$@"
